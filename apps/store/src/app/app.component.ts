@@ -1,14 +1,21 @@
+import { exampleProducts } from '@daveek/products';
+import { CommonUiModule } from './../../../../libs/common-ui/src/lib/common-ui.module';
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
-import { NxWelcomeComponent } from './nx-welcome.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
-  imports: [NxWelcomeComponent, RouterModule],
+  imports: [CommonUiModule, CommonModule],
   selector: 'daveek-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
+  template: `
+    <daveek-banner title="Welcome to the store!"> </daveek-banner>
+    <ul>
+      <li *ngFor="let product of products">
+        <strong>{{ product.name }}</strong> Price: {{ product.price }}
+      </li>
+    </ul>
+  `,
 })
 export class AppComponent {
-  title = 'store';
+  products = exampleProducts;
 }
